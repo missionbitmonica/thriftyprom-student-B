@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROM GLOW UP — SF</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #322D29;
+    --wine: #72383D;
+    --taupe: #AC9C8D;
+    --blush: #D1C7BD;
+    --silver: #D9D9D9;
+    --cream: #EFE9E1;
+    --gold: #C9A84C;
+    --gold-light: #E8D08A;
+    --gold-pale: #F5ECC8;
+    --white: #FDFAF6;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,250,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--blush);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 1.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--wine); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--white);
+  }
+
+  .hero-kintsugi {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none; opacity: 0.18;
+  }
+
+  .hero-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-tag::before, .hero-tag::after {
+    content: '';
+    display: block; width: 40px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold));
+  }
+  .hero-tag::after { background: linear-gradient(to left, transparent, var(--gold)); }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--wine);
+  }
+
+  .hero-sub {
+    max-width: 540px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--taupe);
+    margin: 1.5rem auto 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn-primary {
+    background: var(--wine);
+    color: var(--cream);
+    border: none;
+    padding: 0.85rem 2.2rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    position: relative; overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
+    background: linear-gradient(105deg, transparent 40%, rgba(201,168,76,0.35) 50%, transparent 60%);
+    transform: skewX(-20deg);
+    animation: shimmer 3s infinite;
+  }
+  @keyframes shimmer { 0%,70% { left: -60%; } 100% { left: 140%; } }
+  .btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--blush);
+    padding: 0.85rem 2.2rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* SECTION COMMON */
+  section {
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .section-intro {
+    max-width: 560px;
+    color: var(--taupe);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
+
+  /* GOLD DIVIDER */
+  .gold-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+    margin: 0;
+    opacity: 0.6;
+  }
+
+  /* FEATURES ROW */
+  .features-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    border: 1px solid var(--blush);
+  }
+  .feature-cell {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid var(--blush);
+    position: relative;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none; color: inherit;
+    display: block;
+  }
+  .feature-cell:last-child { border-right: none; }
+  .feature-cell:hover { background: var(--cream); }
+  .feature-cell::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .feature-cell:hover::before { transform: scaleX(1); }
+
+  .feature-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--blush);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .feature-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .feature-desc {
+    font-size: 0.82rem;
+    color: var(--taupe);
+    line-height: 1.65;
+  }
+
+  /* CALENDAR */
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .cal-card {
+    border: 1px solid var(--blush);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .cal-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .cal-card::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle at bottom right, rgba(201,168,76,0.12), transparent 70%);
+  }
+  .cal-date {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--wine);
+    line-height: 1;
+  }
+  .cal-month {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .cal-event { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.3rem; color: var(--ink); }
+  .cal-location { font-size: 0.78rem; color: var(--taupe); }
+  .cal-spots {
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* MAP PLACEHOLDER */
+  .map-container {
+    border: 1px solid var(--blush);
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+    background: #F7F3EE;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .map-bg {
+    position: absolute; inset: 0;
+    opacity: 0.07;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L60 30 M30 0 L30 60' stroke='%23322D29' stroke-width='0.5'/%3E%3C/svg%3E");
+  }
+
+  .map-pin {
+    position: absolute;
+    display: flex; flex-direction: column; align-items: center;
+    cursor: pointer;
+  }
+  .map-pin-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--wine);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 0 4px rgba(114,56,61,0.15);
+    transition: transform 0.2s;
+  }
+  .map-pin:hover .map-pin-dot { transform: scale(1.4); }
+  .map-pin-label {
+    margin-top: 6px;
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    padding: 3px 8px;
+    white-space: nowrap;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .map-pin:hover .map-pin-label { opacity: 1; }
+
+  .thrift-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .thrift-card {
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--blush);
+    position: relative;
+    transition: border-color 0.2s;
+  }
+  .thrift-card:hover { border-color: var(--taupe); }
+  .thrift-tag {
+    display: inline-block;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--wine);
+    background: rgba(114,56,61,0.08);
+    padding: 2px 8px;
+    margin-bottom: 0.75rem;
+  }
+  .thrift-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.2rem; }
+  .thrift-addr { font-size: 0.78rem; color: var(--taupe); margin-bottom: 0.6rem; }
+  .thrift-vibe { font-size: 0.78rem; color: var(--ink); line-height: 1.5; font-style: italic; }
+
+  /* SWAP BOARD */
+  .swap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .swap-card {
+    border: 1px solid var(--blush);
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .swap-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .swap-img {
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .swap-img-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(50,45,41,0.7), transparent);
+    padding: 1.5rem 1rem 0.6rem;
+    color: var(--cream);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+  }
+  .swap-body { padding: 1rem; }
+  .swap-type {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+  .swap-desc { font-size: 0.82rem; color: var(--ink); margin-bottom: 0.4rem; }
+  .swap-size { font-size: 0.75rem; color: var(--taupe); margin-bottom: 0.75rem; }
+  .swap-btn {
+    width: 100%; padding: 0.5rem; background: transparent;
+    border: 1px solid var(--blush); color: var(--wine);
+    font-family: var(--font-body); font-size: 0.7rem;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .swap-btn:hover { background: var(--wine); color: var(--cream); border-color: var(--wine); }
+
+  /* NO TWINS */
+  .no-twins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .outfit-card {
+    border: 1px solid var(--blush);
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  .outfit-card:hover { border-color: var(--wine); }
+  .outfit-swatch {
+    height: 160px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 6px;
+    position: relative;
+  }
+  .outfit-claimed {
+    position: absolute; top: 8px; right: 8px;
+    font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--wine); color: var(--cream);
+    padding: 2px 6px;
+  }
+  .outfit-info { padding: 0.75rem; }
+  .outfit-name { font-size: 0.82rem; font-weight: 500; margin-bottom: 0.2rem; }
+  .outfit-school { font-size: 0.72rem; color: var(--taupe); }
+
+  /* PRINCESS PROJECT BANNER */
+  .pp-banner {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .pp-banner::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(
+      45deg, transparent, transparent 40px,
+      rgba(201,168,76,0.04) 40px, rgba(201,168,76,0.04) 41px
+    );
+  }
+  .pp-banner-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 300;
+    margin-bottom: 0.75rem;
+  }
+  .pp-banner-title span { color: var(--gold-light); font-style: italic; }
+  .pp-banner-sub {
+    font-size: 0.88rem; color: rgba(239,233,225,0.7);
+    max-width: 520px; margin: 0 auto 1.5rem; line-height: 1.75;
+  }
+
+  /* KINTSUGI ACCENT LINES */
+  .kintsugi-section {
+    position: relative;
+  }
+  .kintsugi-line {
+    position: absolute;
+    background: linear-gradient(to right, var(--gold-light), var(--gold), var(--gold-light));
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(239,233,225,0.5);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* PAGE SECTIONS */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* FORM STYLES */
+  .post-form {
+    max-width: 580px;
+    border: 1px solid var(--blush);
+    padding: 2rem;
+  }
+  .form-row { margin-bottom: 1.25rem; }
+  .form-label {
+    display: block;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--taupe); margin-bottom: 0.4rem;
+  }
+  .form-input {
+    width: 100%; padding: 0.65rem 0.9rem;
+    border: 1px solid var(--blush); background: var(--white);
+    font-family: var(--font-body); font-size: 0.88rem; color: var(--ink);
+    outline: none; transition: border-color 0.2s;
+  }
+  .form-input:focus { border-color: var(--gold); }
+  .form-select {
+    width: 100%; padding: 0.65rem 0.9rem;
+    border: 1px solid var(--blush); background: var(--white);
+    font-family: var(--font-body); font-size: 0.88rem; color: var(--ink);
+    outline: none; cursor: pointer;
+  }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero h1, .hero .hero-sub, .hero .hero-ctas { animation: fadeUp 0.8s ease both; }
+  .hero .hero-sub { animation-delay: 0.15s; }
+  .hero .hero-ctas { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">PROM <span>✦</span> GLOW UP</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('calendar')">Giveaways</a></li>
+    <li><a href="#" onclick="showPage('map')">Thrift Map</a></li>
+    <li><a href="#" onclick="showPage('swap')">Swap Board</a></li>
+    <li><a href="#" onclick="showPage('notwins')">No Twins</a></li>
+  </ul>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <svg class="hero-kintsugi" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+      <path d="M0,200 Q200,180 350,320 T700,280 T1000,350 T1200,300" stroke="#C9A84C" stroke-width="1.5" fill="none"/>
+      <path d="M100,0 Q180,250 250,400 T300,700" stroke="#C9A84C" stroke-width="1" fill="none"/>
+      <path d="M800,0 Q750,200 850,350 T900,800" stroke="#C9A84C" stroke-width="1.2" fill="none"/>
+      <path d="M0,500 Q300,450 500,520 T900,480 T1200,510" stroke="#C9A84C" stroke-width="0.8" fill="none"/>
+      <circle cx="350" cy="320" r="3" fill="#C9A84C"/>
+      <circle cx="700" cy="280" r="2.5" fill="#C9A84C"/>
+      <circle cx="250" cy="400" r="2" fill="#C9A84C"/>
+      <circle cx="850" cy="350" r="3" fill="#C9A84C"/>
+      <circle cx="500" cy="520" r="2" fill="#C9A84C"/>
+    </svg>
+
+    <div class="hero-tag">SF Bay Area · Class of 2025</div>
+
+    <h1>your <em>glow up</em><br>shouldn't cost<br>a bag</h1>
+
+    <p class="hero-sub">
+      prom should be iconic, not stressful. we built this for the SF student who wants to show up fully, sustainably, and without accidentally twinning with their ex.
+    </p>
+
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="showPage('calendar')">grab free dresses →</button>
+      <button class="btn-ghost" onclick="showPage('notwins')">claim your look</button>
+    </div>
+  </div>
+
+  <div class="gold-divider"></div>
+
+  <section>
+    <div class="features-row">
+      <a class="feature-cell" href="#" onclick="showPage('calendar')">
+        <div class="feature-number">01</div>
+        <div class="feature-title">Free Dress Days</div>
+        <div class="feature-desc">Princess Project giveaway dates so you never miss a free formal moment.</div>
+      </a>
+      <a class="feature-cell" href="#" onclick="showPage('map')">
+        <div class="feature-number">02</div>
+        <div class="feature-title">Thrift the Mission</div>
+        <div class="feature-desc">Best spots in the Mission + Haight for formal fits that hit different.</div>
+      </a>
+      <a class="feature-cell" href="#" onclick="showPage('swap')">
+        <div class="feature-number">03</div>
+        <div class="feature-title">Dress Swap</div>
+        <div class="feature-desc">Seniors pass down, juniors pick up. the circle of glam lives here.</div>
+      </a>
+      <a class="feature-cell" href="#" onclick="showPage('notwins')">
+        <div class="feature-number">04</div>
+        <div class="feature-title">No Twins Club</div>
+        <div class="feature-desc">Post your fit. call it yours. no awkward hallway moments on prom night.</div>
+      </a>
+    </div>
+  </section>
+
+  <div class="pp-banner">
+    <div class="pp-banner-title">co-powered by <span>The Princess Project</span></div>
+    <p class="pp-banner-sub">every dress in their collection is donated, cleaned, and ready for its next era. no purchase necessary. just show up and find your look.</p>
+    <button class="btn-primary" onclick="showPage('calendar')">see giveaway dates →</button>
+  </div>
+
+</div>
+
+<!-- CALENDAR PAGE -->
+<div id="page-calendar" class="page">
+  <section>
+    <div class="section-label">Princess Project SF</div>
+    <h2 class="section-title">free giveaway<br>dates & drops</h2>
+    <p class="section-intro">these events are first come, first served — so add them to your calendar NOW. bring a friend and make a whole thing of it.</p>
+
+    <div class="calendar-grid">
+      <div class="cal-card">
+        <div class="cal-date">08</div>
+        <div class="cal-month">March 2025</div>
+        <div class="cal-event">Princess Project Giveaway Day</div>
+        <div class="cal-location">📍 St. Mary's Cathedral, 1111 Gough St</div>
+        <div class="cal-spots">✦ ~300 dresses available</div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date">15</div>
+        <div class="cal-month">March 2025</div>
+        <div class="cal-event">East Bay Giveaway — Oakland</div>
+        <div class="cal-location">📍 Laney College, 900 Fallon St</div>
+        <div class="cal-spots">✦ all sizes · accessories too</div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date">22</div>
+        <div class="cal-month">March 2025</div>
+        <div class="cal-event">Peninsula Giveaway Day</div>
+        <div class="cal-location">📍 SMCHS, 901 Jesuit Dr, San Jose</div>
+        <div class="cal-spots">✦ open to all Bay Area students</div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date">05</div>
+        <div class="cal-month">April 2025</div>
+        <div class="cal-event">Suits & Tuxedo Drop — NEW</div>
+        <div class="cal-location">📍 TBD — check back soon</div>
+        <div class="cal-spots">✦ first year for menswear!</div>
+      </div>
+      <div class="cal-card">
+        <div class="cal-date">12</div>
+        <div class="cal-month">April 2025</div>
+        <div class="cal-event">Final SF Giveaway</div>
+        <div class="cal-location">📍 SF General area — TBD</div>
+        <div class="cal-spots">✦ last chance before prom szn</div>
+      </div>
+      <div class="cal-card" style="border-color: var(--gold); background: var(--gold-pale);">
+        <div class="cal-date" style="color: var(--gold);">+</div>
+        <div class="cal-month">More dates</div>
+        <div class="cal-event">Know of an event we missed?</div>
+        <div class="cal-location">help us keep this updated for everyone</div>
+        <div class="cal-spots" style="margin-top: 1rem;">
+          <button class="btn-primary" style="font-size: 0.65rem; padding: 0.5rem 1.2rem;" onclick="alert('Thanks! Form coming soon.')">submit a date ↗</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- MAP PAGE -->
+<div id="page-map" class="page">
+  <section>
+    <div class="section-label">Mission + Haight</div>
+    <h2 class="section-title">thrift spots that<br>actually have formals</h2>
+    <p class="section-intro">not all thrift stores are the same. these are the ones where people consistently find gowns, suits, and blazers worth wearing to prom.</p>
+
+    <div class="thrift-list">
+      <div class="thrift-card">
+        <span class="thrift-tag">The Haight</span>
+        <div class="thrift-name">Wasteland SF</div>
+        <div class="thrift-addr">1660 Haight St · Inner Sunset</div>
+        <div class="thrift-vibe">"curated vintage with legit formal gowns — pricier but the selection is *chef's kiss*"</div>
+      </div>
+      <div class="thrift-card">
+        <span class="thrift-tag">The Mission</span>
+        <div class="thrift-name">Community Thrift</div>
+        <div class="thrift-addr">623 Valencia St · Mission</div>
+        <div class="thrift-vibe">"massive inventory, always rotating. go on weekdays when it's less picked over"</div>
+      </div>
+      <div class="thrift-card">
+        <span class="thrift-tag">The Haight</span>
+        <div class="thrift-name">Buffalo Exchange</div>
+        <div class="thrift-addr">1555 Haight St · Lower Haight</div>
+        <div class="thrift-vibe">"they actually sort by size which is a whole lifesaver. good for blazers and jumpsuits"</div>
+      </div>
+      <div class="thrift-card">
+        <span class="thrift-tag">The Mission</span>
+        <div class="thrift-name">Goodwill Mission</div>
+        <div class="thrift-addr">2279 Mission St · Mission</div>
+        <div class="thrift-vibe">"budget friendly, hit or miss but when you hit... you HIT. bring a patient friend"</div>
+      </div>
+      <div class="thrift-card">
+        <span class="thrift-tag">The Castro</span>
+        <div class="thrift-name">Ver Unica</div>
+        <div class="thrift-addr">436 Castro St · Castro</div>
+        <div class="thrift-vibe">"vintage luxury, very editorial. if you want something that looks like it's from another era"</div>
+      </div>
+      <div class="thrift-card">
+        <span class="thrift-tag">SOMA</span>
+        <div class="thrift-name">Arc SF Thrift</div>
+        <div class="thrift-addr">1200 Howard St · SoMa</div>
+        <div class="thrift-vibe">"underrated gem. formal section in the back, great prices, huge men's section"</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SWAP PAGE -->
+<div id="page-swap" class="page">
+  <section>
+    <div class="section-label">Pass it down · Senior to Junior</div>
+    <h2 class="section-title">the dress swap<br>board</h2>
+    <p class="section-intro">worn it once, loved it completely, now it's someone else's turn to shine. list your dress, claim one for yourself, keep the cycle going.</p>
+
+    <div class="swap-grid">
+      <div class="swap-card">
+        <div class="swap-img" style="background: linear-gradient(135deg, #72383D 0%, #AC9C8D 100%);">
+          <div style="font-size: 2.5rem;">👗</div>
+          <div class="swap-img-label">burgundy floor-length</div>
+        </div>
+        <div class="swap-body">
+          <div class="swap-type">Dress · Giving Away</div>
+          <div class="swap-desc">BCBG halter gown, worn once for junior prom last year. zero drama this dress era</div>
+          <div class="swap-size">Size 4 · excellent condition</div>
+          <button class="swap-btn">i want this →</button>
+        </div>
+      </div>
+      <div class="swap-card">
+        <div class="swap-img" style="background: linear-gradient(135deg, #D1C7BD 0%, #EFE9E1 100%);">
+          <div style="font-size: 2.5rem;">🤵</div>
+          <div class="swap-img-label">cream suit set</div>
+        </div>
+        <div class="swap-body">
+          <div class="swap-type">Suit · Giving Away</div>
+          <div class="swap-desc">H&M slim fit 2-piece, cream/off-white. honestly too good to sit in a closet</div>
+          <div class="swap-size">Size 38R · dry cleaned & ready</div>
+          <button class="swap-btn">i want this →</button>
+        </div>
+      </div>
+      <div class="swap-card">
+        <div class="swap-img" style="background: linear-gradient(135deg, #322D29 0%, #72383D 100%);">
+          <div style="font-size: 2.5rem;">✨</div>
+          <div class="swap-img-label">black sequin mini</div>
+        </div>
+        <div class="swap-body">
+          <div class="swap-type">Dress · Giving Away</div>
+          <div class="swap-desc">Zara sequin mini, so fun but I'm going long this year. it SLAPS though</div>
+          <div class="swap-size">Size S · tiny side zip</div>
+          <button class="swap-btn">i want this →</button>
+        </div>
+      </div>
+      <div class="swap-card" style="border-style: dashed; border-color: var(--blush);">
+        <div class="swap-img" style="background: var(--cream); flex-direction: column; gap: 0.5rem;">
+          <div style="font-size: 2rem; opacity: 0.4;">+</div>
+          <div style="font-size: 0.75rem; color: var(--taupe); letter-spacing: 0.1em; text-transform: uppercase;">post your item</div>
+        </div>
+        <div class="swap-body">
+          <div class="swap-type">List Something</div>
+          <div class="swap-desc">got something someone else would love? post it here and pass the glow forward.</div>
+          <div class="swap-size">&nbsp;</div>
+          <button class="swap-btn" onclick="showPostForm()">list my item →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="post-form-area" style="display:none; margin-top: 3rem;">
+      <div class="gold-divider" style="margin-bottom: 2rem;"></div>
+      <div class="section-label">New Listing</div>
+      <div class="post-form">
+        <div class="form-row">
+          <label class="form-label">what are you listing?</label>
+          <select class="form-select">
+            <option>Dress</option>
+            <option>Suit / Tuxedo</option>
+            <option>Jumpsuit</option>
+            <option>Blazer</option>
+            <option>Accessories</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="form-label">describe it (keep it real)</label>
+          <textarea class="form-input" rows="3" placeholder="color, brand if you know it, condition, why you loved it..."></textarea>
+        </div>
+        <div class="form-row-2">
+          <div class="form-row" style="margin-bottom: 0;">
+            <label class="form-label">size</label>
+            <input class="form-input" type="text" placeholder="4, S, 38R, etc.">
+          </div>
+          <div class="form-row" style="margin-bottom: 0;">
+            <label class="form-label">your school</label>
+            <input class="form-input" type="text" placeholder="Galileo, Lincoln...">
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 1.25rem;">
+          <button class="btn-primary" onclick="alert('Posted! 🙌 Check back to see your listing.')">post it →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- NO TWINS PAGE -->
+<div id="page-notwins" class="page">
+  <section>
+    <div class="section-label">Outfit Registry</div>
+    <h2 class="section-title">the no twins<br>club</h2>
+    <p class="section-intro">once you have your look, claim it here. your school, your color, your vibe — all on lock. no awkward side-by-sides at photos.</p>
+
+    <div class="no-twins-grid">
+      <div class="outfit-card">
+        <div class="outfit-swatch" style="background: linear-gradient(160deg, #72383D, #322D29);">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(201,168,76,0.3); border: 1px solid var(--gold-light);"></div>
+          <div style="font-size: 0.7rem; color: rgba(239,233,225,0.7); letter-spacing: 0.1em;">deep wine · floor</div>
+          <div class="outfit-claimed">CLAIMED</div>
+        </div>
+        <div class="outfit-info">
+          <div class="outfit-name">Aaliyah T.</div>
+          <div class="outfit-school">Galileo HS</div>
+        </div>
+      </div>
+      <div class="outfit-card">
+        <div class="outfit-swatch" style="background: linear-gradient(160deg, #EFE9E1, #D1C7BD);">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(201,168,76,0.3); border: 1px solid var(--gold-light);"></div>
+          <div style="font-size: 0.7rem; color: var(--taupe); letter-spacing: 0.1em;">ivory · midi</div>
+          <div class="outfit-claimed">CLAIMED</div>
+        </div>
+        <div class="outfit-info">
+          <div class="outfit-name">Jordan M.</div>
+          <div class="outfit-school">Lincoln HS</div>
+        </div>
+      </div>
+      <div class="outfit-card">
+        <div class="outfit-swatch" style="background: linear-gradient(160deg, #322D29, #AC9C8D);">
+          <div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(201,168,76,0.3); border: 1px solid var(--gold-light);"></div>
+          <div style="font-size: 0.7rem; color: rgba(239,233,225,0.7); letter-spacing: 0.1em;">charcoal suit</div>
+          <div class="outfit-claimed">CLAIMED</div>
+        </div>
+        <div class="outfit-info">
+          <div class="outfit-name">Marcus R.</div>
+          <div class="outfit-school">Balboa HS</div>
+        </div>
+      </div>
+      <div class="outfit-card" style="border-style: dashed;">
+        <div class="outfit-swatch" style="background: var(--cream); flex-direction: column; gap: 0.5rem; cursor: pointer;" onclick="showClaimForm()">
+          <div style="font-size: 1.8rem; opacity: 0.3;">+</div>
+          <div style="font-size: 0.65rem; color: var(--taupe); letter-spacing: 0.1em; text-transform: uppercase;">claim your look</div>
+        </div>
+        <div class="outfit-info">
+          <div class="outfit-name" style="color: var(--taupe);">your name here</div>
+          <div class="outfit-school">your school</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="claim-form-area" style="display:none; margin-top: 3rem;">
+      <div class="gold-divider" style="margin-bottom: 2rem;"></div>
+      <div class="section-label">Claim Your Look</div>
+      <div class="post-form">
+        <div class="form-row-2">
+          <div class="form-row" style="margin-bottom: 0;">
+            <label class="form-label">your name</label>
+            <input class="form-input" type="text" placeholder="first name is fine">
+          </div>
+          <div class="form-row" style="margin-bottom: 0;">
+            <label class="form-label">your school</label>
+            <input class="form-input" type="text" placeholder="Lincoln, Galileo...">
+          </div>
+        </div>
+        <div class="form-row" style="margin-top: 1.25rem;">
+          <label class="form-label">outfit vibe (color + silhouette)</label>
+          <input class="form-input" type="text" placeholder="e.g. emerald green floor-length gown / navy tux">
+        </div>
+        <div class="form-row">
+          <label class="form-label">any details? (optional)</label>
+          <input class="form-input" type="text" placeholder="strapless, sequins, thrifted from community thrift...">
+        </div>
+        <div class="form-row">
+          <button class="btn-primary" onclick="alert('Look claimed! You\'re officially on the registry 👑')">lock it in →</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<div class="gold-divider"></div>
+<footer>
+  <p style="margin-bottom: 0.4rem; color: rgba(239,233,225,0.4); letter-spacing: 0.15em; font-size: 0.65rem;">PROM GLOW UP SF · made with love for SF students</p>
+  <p><a href="https://www.princessproject.org" target="_blank">The Princess Project</a> · all giveaway info subject to change, verify directly</p>
+</footer>
+
+<script>
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showPostForm() {
+  const el = document.getElementById('post-form-area');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function showClaimForm() {
+  const el = document.getElementById('claim-form-area');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
