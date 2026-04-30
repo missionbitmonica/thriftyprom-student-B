@@ -293,18 +293,31 @@
 
   /* MAP PLACEHOLDER */
   .map-container {
-    border: 1px solid var(--blush);
-    height: 380px;
-    position: relative;
-    overflow: hidden;
-    background: #F7F3EE;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .map-bg {
-    position: absolute; inset: 0;
-    opacity: 0.07;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L60 30 M30 0 L30 60' stroke='%23322D29' stroke-width='0.5'/%3E%3C/svg%3E");
-  }
+  border: 1px solid var(--blush);
+  height: 380px;
+  position: relative;
+  overflow: hidden;
+  background: #F7F3EE;
+}
+
+/* the new SF map image */
+.map-base {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* or contain if you want full map with bars */
+  display: block;
+}
+
+/* optional: keep the subtle grid on top of the map */
+.map-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L60 30 M30 0 L30 60' stroke='%23322D29' stroke-width='0.5'/%3E%3C/svg%3E");
+}
 
   .map-pin {
     position: absolute;
@@ -726,6 +739,7 @@
 
 <!-- MAP PAGE -->
 <div id="page-map" class="page">
+  
   <section>
     <div class="section-label">Mission + Haight</div>
     <h2 class="section-title">thrift spots that<br>actually have formals</h2>
@@ -743,8 +757,9 @@
     </div>
 
     <!-- Map container with pins -->
-    <div class="map-container">
-      <div class="map-bg"></div>
+  <div class="map-container">
+  <img src="sf_thrift_map.png" alt="..." class="map-base">
+  <div class="map-bg"></div>
       <!-- You can swap this placeholder for a custom SF map image later -->
       <div style="font-size: 0.8rem; color: var(--taupe); text-align: center;">
         simple sf map coming soon — for now, tap a pin or card below
