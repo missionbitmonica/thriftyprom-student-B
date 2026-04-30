@@ -332,6 +332,42 @@
   }
   .map-pin:hover .map-pin-label { opacity: 1; }
 
+  .map-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.map-filter-btn {
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--blush);
+  background: rgba(255,255,255,0.9);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  cursor: pointer;
+}
+
+.map-filter-btn.is-active {
+  border-color: var(--gold);
+  color: var(--wine);
+  background: #fff7e6;
+}
+
+/* Pin positions inside your .map-container (tweak by eye if needed) */
+.pin-haight {
+  top: 30%;
+  left: 35%;
+}
+
+.pin-mission {
+  top: 60%;
+  left: 55%;
+}
+
   .thrift-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -1141,6 +1177,68 @@ function showClaimForm() {
   el.style.display = el.style.display === 'none' ? 'block' : 'none';
   if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
+  function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + name).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function showPostForm() {
+  const el = document.getElementById('post-form-area');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function showClaimForm() {
+  const el = document.getElementById('claim-form-area');
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* NEW: thrift map filters + pins */
+(function () {
+  const filterButtons = document.querySelectorAll('.map-filter-btn');
+  const cards = document.querySelectorAll('.thrift-card');
+  const pins = document.querySelectorAll('.map-pin');
+
+  function applyFilter(filter) {
+    cards.forEach(card => {
+      const hood = card.dataset.neighborhood;
+      const tags = (card.dataset.tags || '').split(',');
+      let show = false;
+
+      if (filter === 'all') {
+        show = true;
+      } else if (filter === 'haight' || filter === 'mission') {
+        show = hood === filter;
+      } else if (filter === 'formal') {
+        show = tags.includes('formal');
+      }
+
+      card.style.display = show ? '' : 'none';
+    });
+  }
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      filterButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+      applyFilter(filter);
+    });
+  });
+
+  pins.forEach(pin => {
+    pin.addEventListener('click', () => {
+      const hood = pin.dataset.neighborhood;
+      filterButtons.forEach(b => {
+        const isMatch = b.dataset.filter === hood;
+        b.classList.toggle('is-active', isMatch);
+      });
+      applyFilter(hood);
+    });
+  });
+
+  // initialize
+  applyFilter('all');
+})();
 </script>
 </body>
 </html>
