@@ -515,33 +515,34 @@
   .hero .hero-sub { animation-delay: 0.15s; }
   .hero .hero-ctas { animation-delay: 0.3s; }
 
-  /* Force swap-board photos to fill their box correctly */
+/* --- Swap board photo layout --- */
+
 .swap-img {
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  background: #000;
+  background: #000; /* fallback for when images load */
 }
 
-/* Maintain a consistent thumbnail ratio */
+/* Gives each thumbnail a consistent height */
 .swap-img::before {
   content: "";
   display: block;
-  padding-bottom: 75%; /* slightly taller; tweak between 65–85% */
+  padding-bottom: 75%; /* try 70–85% to taste */
 }
 
 .swap-img > img.swap-photo {
   position: absolute;
-  inset: 0;           /* top:0; right:0; bottom:0; left:0 */
+  inset: 0;           /* top/right/bottom/left: 0 */
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* fill the box, crop evenly */
+  object-fit: cover;  /* fill, crop evenly */
   object-position: center;
   display: block;
   z-index: 0;
 }
 
-/* Make sure the label sits above the image */
+/* Label sits on top of photo */
 .swap-img-label {
   position: absolute;
   left: 0.7rem;
