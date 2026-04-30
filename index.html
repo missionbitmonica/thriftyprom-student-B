@@ -693,49 +693,99 @@
   <section>
     <div class="section-label">Mission + Haight</div>
     <h2 class="section-title">thrift spots that<br>actually have formals</h2>
-    <p class="section-intro">not all thrift stores are the same. these are the ones where people consistently find gowns, suits, and blazers worth wearing to prom.</p>
+    <p class="section-intro">
+      not all thrift stores are the same. these are the ones where people actually find gowns, suits, and blazers worth wearing to prom.
+      tap a pin or switch neighborhoods to scope the options.
+    </p>
 
+    <!-- Filters row -->
+    <div class="map-filters">
+      <button class="map-filter-btn is-active" data-filter="all">all spots</button>
+      <button class="map-filter-btn" data-filter="haight">haight</button>
+      <button class="map-filter-btn" data-filter="mission">mission</button>
+      <button class="map-filter-btn" data-filter="formal">formal-ish</button>
+    </div>
+
+    <!-- Map container with pins -->
+    <div class="map-container">
+      <div class="map-bg"></div>
+      <!-- You can swap this placeholder for a custom SF map image later -->
+      <div style="font-size: 0.8rem; color: var(--taupe); text-align: center;">
+        simple sf map coming soon — for now, tap a pin or card below
+      </div>
+
+      <!-- approximate pin positions within this box -->
+      <button class="map-pin pin-haight" data-neighborhood="haight" type="button">
+        <div class="map-pin-dot"></div>
+        <div class="map-pin-label">Haight</div>
+      </button>
+
+      <button class="map-pin pin-mission" data-neighborhood="mission" type="button">
+        <div class="map-pin-dot"></div>
+        <div class="map-pin-label">Mission</div>
+      </button>
+    </div>
+
+    <!-- Thrift cards “linked” to pins -->
     <div class="thrift-list">
-      <div class="thrift-card">
+      <!-- Haight -->
+      <div class="thrift-card" data-neighborhood="haight" data-tags="formal">
         <span class="thrift-tag">The Haight</span>
         <div class="thrift-name">Wasteland SF</div>
-        <div class="thrift-addr">1660 Haight St · Inner Sunset</div>
-        <div class="thrift-vibe">"curated vintage with legit formal gowns — pricier but the selection is *chef's kiss*"</div>
+        <div class="thrift-addr">1660 Haight St · Haight-Ashbury</div>
+        <div class="thrift-vibe">
+          curated vintage with legit formal gowns — pricier but the selection is *chef's kiss* when you’re hunting statement dresses.[web:20][web:55]
+        </div>
       </div>
-      <div class="thrift-card">
-        <span class="thrift-tag">The Mission</span>
-        <div class="thrift-name">Community Thrift</div>
-        <div class="thrift-addr">623 Valencia St · Mission</div>
-        <div class="thrift-vibe">"massive inventory, always rotating. go on weekdays when it's less picked over"</div>
+
+      <div class="thrift-card" data-neighborhood="haight" data-tags="formal">
+        <span class="thrift-tag">The Haight</span>
+        <div class="thrift-name">Relic Vintage</div>
+        <div class="thrift-addr">1475 Haight St · Haight-Ashbury</div>
+        <div class="thrift-vibe">
+          high-end 20s–60s gowns and suits, good if you’re going full Old Hollywood or theme‑night extra.[web:20][web:55]
+        </div>
       </div>
-      <div class="thrift-card">
+
+      <div class="thrift-card" data-neighborhood="haight" data-tags="">
         <span class="thrift-tag">The Haight</span>
         <div class="thrift-name">Buffalo Exchange</div>
         <div class="thrift-addr">1555 Haight St · Lower Haight</div>
-        <div class="thrift-vibe">"they actually sort by size which is a whole lifesaver. good for blazers and jumpsuits"</div>
+        <div class="thrift-vibe">
+          they actually sort by size which is a whole lifesaver. clutch for blazers, jumpsuits, and not‑too‑formal fits.[web:20][web:55]
+        </div>
       </div>
-      <div class="thrift-card">
+
+      <!-- Mission -->
+      <div class="thrift-card" data-neighborhood="mission" data-tags="">
+        <span class="thrift-tag">The Mission</span>
+        <div class="thrift-name">Community Thrift</div>
+        <div class="thrift-addr">623 Valencia St · Mission</div>
+        <div class="thrift-vibe">
+          massive community-run spot, always rotating racks. you can build a whole prom fit here if you’re patient.[web:58][web:63]
+        </div>
+      </div>
+
+      <div class="thrift-card" data-neighborhood="mission" data-tags="formal">
+        <span class="thrift-tag">The Mission</span>
+        <div class="thrift-name">Mission Thrift</div>
+        <div class="thrift-addr">2330 Mission St · Mission</div>
+        <div class="thrift-vibe">
+          “buried treasure” vibes — everything from ridiculous party dresses to prom‑worthy gowns if you’re down to dig.[web:58][web:63]
+        </div>
+      </div>
+
+      <div class="thrift-card" data-neighborhood="mission" data-tags="">
         <span class="thrift-tag">The Mission</span>
         <div class="thrift-name">Goodwill Mission</div>
         <div class="thrift-addr">2279 Mission St · Mission</div>
-        <div class="thrift-vibe">"budget friendly, hit or miss but when you hit... you HIT. bring a patient friend"</div>
-      </div>
-      <div class="thrift-card">
-        <span class="thrift-tag">The Castro</span>
-        <div class="thrift-name">Ver Unica</div>
-        <div class="thrift-addr">436 Castro St · Castro</div>
-        <div class="thrift-vibe">"vintage luxury, very editorial. if you want something that looks like it's from another era"</div>
-      </div>
-      <div class="thrift-card">
-        <span class="thrift-tag">SOMA</span>
-        <div class="thrift-name">Arc SF Thrift</div>
-        <div class="thrift-addr">1200 Howard St · SoMa</div>
-        <div class="thrift-vibe">"underrated gem. formal section in the back, great prices, huge men's section"</div>
+        <div class="thrift-vibe">
+          budget friendly, hit or miss but when you hit, you HIT. show up on restock days and check the formal rack first.[web:58][web:61]
+        </div>
       </div>
     </div>
   </section>
 </div>
-
 <!-- SWAP PAGE -->
 <div id="page-swap" class="page">
   <section>
