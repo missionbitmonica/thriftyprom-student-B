@@ -319,11 +319,18 @@
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L60 30 M30 0 L30 60' stroke='%23322D29' stroke-width='0.5'/%3E%3C/svg%3E");
 }
 
-  .map-pin {
-    position: absolute;
-    display: flex; flex-direction: column; align-items: center;
-    cursor: pointer;
-  }
+ .map-pin {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  /* remove default button box */
+  background: none;
+  border: none;
+  padding: 0;
+}
   .map-pin-dot {
     width: 12px; height: 12px;
     border-radius: 50%;
