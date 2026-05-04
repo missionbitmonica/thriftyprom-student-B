@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -291,46 +290,42 @@
     text-transform: uppercase;
   }
 
-  /* MAP PLACEHOLDER */
+  /* MAP */
   .map-container {
-  border: 1px solid var(--blush);
-  height: 380px;
-  position: relative;
-  overflow: hidden;
-  background: #F7F3EE;
-}
+    border: 1px solid var(--blush);
+    height: 380px;
+    position: relative;
+    overflow: hidden;
+    background: #F7F3EE;
+  }
 
-/* the new SF map image */
-.map-base {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* or contain if you want full map with bars */
-  display: block;
-}
+  .map-base {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
 
-/* optional: keep the subtle grid on top of the map */
-.map-bg {
-  position: absolute;
-  inset: 0;
-  opacity: 0.07;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L60 30 M30 0 L30 60' stroke='%23322D29' stroke-width='0.5'/%3E%3C/svg%3E");
-}
+  .map-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 30 L60 30 M30 0 L30 60' stroke='%23322D29' stroke-width='0.5'/%3E%3C/svg%3E");
+  }
 
- .map-pin {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-
-  /* remove default button box */
-  background: none;
-  border: none;
-  padding: 0;
-}
+  .map-pin {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+  }
   .map-pin-dot {
     width: 12px; height: 12px;
     border-radius: 50%;
@@ -353,42 +348,39 @@
   .map-pin:hover .map-pin-label { opacity: 1; }
 
   .map-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
 
-.map-filter-btn {
-  padding: 0.3rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid var(--blush);
-  background: rgba(255,255,255,0.9);
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--taupe);
-  cursor: pointer;
-}
+  .map-filter-btn {
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--blush);
+    background: rgba(255,255,255,0.9);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    cursor: pointer;
+  }
 
-.map-filter-btn.is-active {
-  border-color: var(--gold);
-  color: var(--wine);
-  background: #fff7e6;
-}
+  .map-filter-btn.is-active {
+    border-color: var(--gold);
+    color: var(--wine);
+    background: #fff7e6;
+  }
 
-/* Pin positions inside your .map-container (tweak by eye if needed) */
-/* Haight: move slightly up and a bit left */
-.pin-haight {
-  top: 19%;  /* was 30% */
-  left: 39.5%; /* was 35% */
-}
+  .pin-haight {
+    top: 19%;
+    left: 39.5%;
+  }
 
-/* Mission: move slightly down and a hair right */
-.pin-mission {
-  top: 57%;  /* was 60% */
-  left: 54%; /* was 55% */
-}
+  .pin-mission {
+    top: 57%;
+    left: 54%;
+  }
 
   .thrift-list {
     display: grid;
@@ -431,12 +423,36 @@
   }
   .swap-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .swap-img {
-  position: relative;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #000; /* fallback for photo cards */
-}
-
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #000;
+  }
+  .swap-img::before {
+    content: "";
+    display: block;
+    padding-bottom: 95%;
+  }
+  .swap-img > img.swap-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    z-index: 0;
+  }
+  .swap-img-label {
+    position: absolute;
+    left: 0.7rem;
+    bottom: 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+    z-index: 1;
+  }
   .swap-body { padding: 1rem; }
   .swap-type {
     font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -514,17 +530,6 @@
     max-width: 520px; margin: 0 auto 1.5rem; line-height: 1.75;
   }
 
-  /* KINTSUGI ACCENT LINES */
-  .kintsugi-section {
-    position: relative;
-  }
-  .kintsugi-line {
-    position: absolute;
-    background: linear-gradient(to right, var(--gold-light), var(--gold), var(--gold-light));
-    opacity: 0.5;
-    pointer-events: none;
-  }
-
   /* FOOTER */
   footer {
     background: var(--ink);
@@ -572,45 +577,6 @@
   .hero h1, .hero .hero-sub, .hero .hero-ctas { animation: fadeUp 0.8s ease both; }
   .hero .hero-sub { animation-delay: 0.15s; }
   .hero .hero-ctas { animation-delay: 0.3s; }
-
-/* --- Swap board photo layout --- */
-
-.swap-img {
-
-  border-radius: 14px;
-  overflow: hidden;
-  background: #000; /* fallback for when images load */
-}
-
-/* Gives each thumbnail a consistent height */
-.swap-img::before {
-  content: "";
-  display: block;
-  padding-bottom: 95%; /* try 70–85% to taste */
-}
-
-.swap-img > img.swap-photo {
-  position: absolute;
-  inset: 0;           /* top/right/bottom/left: 0 */
-  width: 100%;
-  height: 100%;
-  object-fit: cover;  /* fill, crop evenly */
-  object-position: center;
-  display: block;
-  z-index: 0;
-}
-
-/* Label sits on top of photo */
-.swap-img-label {
-  position: absolute;
-  left: 0.7rem;
-  bottom: 0.55rem;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
-  z-index: 1;
-}
 </style>
 </head>
 <body>
@@ -625,7 +591,7 @@
   </ul>
 </nav>
 
-<!-- HOME PAGE -->
+<!-- ========== HOME PAGE ========== -->
 <div id="page-home" class="page active">
 
   <div class="hero">
@@ -688,9 +654,9 @@
     <button class="btn-primary" onclick="showPage('calendar')">see giveaway dates →</button>
   </div>
 
-</div>
+</div><!-- end page-home -->
 
-<!-- CALENDAR PAGE -->
+<!-- ========== CALENDAR PAGE ========== -->
 <div id="page-calendar" class="page">
   <section>
     <div class="section-label">Princess Project SF</div>
@@ -744,11 +710,10 @@
       </div>
     </div>
   </section>
-</div>
+</div><!-- end page-calendar -->
 
-<!-- MAP PAGE -->
+<!-- ========== MAP PAGE ========== -->
 <div id="page-map" class="page">
-  
   <section>
     <div class="section-label">Mission + Haight</div>
     <h2 class="section-title">thrift spots that<br>actually have formals</h2>
@@ -757,7 +722,6 @@
       tap a pin or switch neighborhoods to scope the options.
     </p>
 
-    <!-- Filters row -->
     <div class="map-filters">
       <button class="map-filter-btn is-active" data-filter="all">all spots</button>
       <button class="map-filter-btn" data-filter="haight">haight</button>
@@ -765,88 +729,64 @@
       <button class="map-filter-btn" data-filter="formal">formal-ish</button>
     </div>
 
-    <!-- Map container with pins -->
-  <div class="map-container">
-  <img src="sf_thrift_map.png" alt="..." class="map-base">
-  <div class="map-bg"></div>
-      <!-- You can swap this placeholder for a custom SF map image later -->
+    <div class="map-container">
+      <img src="sf_thrift_map.png" alt="SF thrift map" class="map-base">
+      <div class="map-bg"></div>
       <div style="font-size: 0.8rem; color: var(--taupe); text-align: center;">
         simple sf map coming soon — for now, tap a pin or card below
       </div>
-
-      <!-- approximate pin positions within this box -->
       <button class="map-pin pin-haight" data-neighborhood="haight" type="button">
         <div class="map-pin-dot"></div>
         <div class="map-pin-label">Haight</div>
       </button>
-
       <button class="map-pin pin-mission" data-neighborhood="mission" type="button">
         <div class="map-pin-dot"></div>
         <div class="map-pin-label">Mission</div>
       </button>
     </div>
 
-    <!-- Thrift cards “linked” to pins -->
     <div class="thrift-list">
-      <!-- Haight -->
       <div class="thrift-card" data-neighborhood="haight" data-tags="formal">
         <span class="thrift-tag">The Haight</span>
         <div class="thrift-name">Wasteland SF</div>
         <div class="thrift-addr">1660 Haight St · Haight-Ashbury</div>
-        <div class="thrift-vibe">
-          curated vintage with legit formal gowns — pricier but the selection is *chef's kiss* when you’re hunting statement dresses.[web:20][web:55]
-        </div>
+        <div class="thrift-vibe">curated vintage with legit formal gowns — pricier but the selection is *chef's kiss* when you're hunting statement dresses.</div>
       </div>
-
       <div class="thrift-card" data-neighborhood="haight" data-tags="formal">
         <span class="thrift-tag">The Haight</span>
         <div class="thrift-name">Relic Vintage</div>
         <div class="thrift-addr">1475 Haight St · Haight-Ashbury</div>
-        <div class="thrift-vibe">
-          high-end 20s–60s gowns and suits, good if you’re going full Old Hollywood or theme‑night extra.[web:20][web:55]
-        </div>
+        <div class="thrift-vibe">high-end 20s–60s gowns and suits, good if you're going full Old Hollywood or theme‑night extra.</div>
       </div>
-
       <div class="thrift-card" data-neighborhood="haight" data-tags="">
         <span class="thrift-tag">The Haight</span>
         <div class="thrift-name">Buffalo Exchange</div>
         <div class="thrift-addr">1555 Haight St · Lower Haight</div>
-        <div class="thrift-vibe">
-          they actually sort by size which is a whole lifesaver. clutch for blazers, jumpsuits, and not‑too‑formal fits.[web:20][web:55]
-        </div>
+        <div class="thrift-vibe">they actually sort by size which is a whole lifesaver. clutch for blazers, jumpsuits, and not‑too‑formal fits.</div>
       </div>
-
-      <!-- Mission -->
       <div class="thrift-card" data-neighborhood="mission" data-tags="">
         <span class="thrift-tag">The Mission</span>
         <div class="thrift-name">Community Thrift</div>
         <div class="thrift-addr">623 Valencia St · Mission</div>
-        <div class="thrift-vibe">
-          massive community-run spot, always rotating racks. you can build a whole prom fit here if you’re patient.[web:58][web:63]
-        </div>
+        <div class="thrift-vibe">massive community-run spot, always rotating racks. you can build a whole prom fit here if you're patient.</div>
       </div>
-
       <div class="thrift-card" data-neighborhood="mission" data-tags="formal">
         <span class="thrift-tag">The Mission</span>
         <div class="thrift-name">Mission Thrift</div>
         <div class="thrift-addr">2330 Mission St · Mission</div>
-        <div class="thrift-vibe">
-          “buried treasure” vibes — everything from ridiculous party dresses to prom‑worthy gowns if you’re down to dig.[web:58][web:63]
-        </div>
+        <div class="thrift-vibe">"buried treasure" vibes — everything from ridiculous party dresses to prom‑worthy gowns if you're down to dig.</div>
       </div>
-
       <div class="thrift-card" data-neighborhood="mission" data-tags="">
         <span class="thrift-tag">The Mission</span>
         <div class="thrift-name">Goodwill Mission</div>
         <div class="thrift-addr">2279 Mission St · Mission</div>
-        <div class="thrift-vibe">
-          budget friendly, hit or miss but when you hit, you HIT. show up on restock days and check the formal rack first.[web:58][web:61]
-        </div>
+        <div class="thrift-vibe">budget friendly, hit or miss but when you hit, you HIT. show up on restock days and check the formal rack first.</div>
       </div>
     </div>
   </section>
-</div>
-<!-- SWAP PAGE -->
+</div><!-- end page-map -->
+
+<!-- ========== SWAP PAGE ========== -->
 <div id="page-swap" class="page">
   <section>
     <div class="section-label">Pass it down · Senior to Junior</div>
@@ -860,39 +800,27 @@
       <!-- 1: Cabernet gown -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="sbcabernet.png"
-            alt="Floor-length cabernet satin gown on a plus-size mannequin with silver heels next to the hem, styled like a red carpet look."
-            class="swap-photo"
-          />
+          <img src="sbcabernet.png" alt="Floor-length cabernet satin gown on a plus-size mannequin with silver heels next to the hem, styled like a red carpet look." class="swap-photo"/>
           <div class="swap-img-label">💎 cabernet floor-length</div>
         </div>
-         <div class="swap-body">
-    <div class="swap-type">Dress · Giving Away</div>
-    <div class="swap-desc">
-      floor-length cabernet satin gown with silver heels. wore it once and felt like I was on the red carpet. ready for a new main character.
-    </div>
-    <div class="swap-size">Plus-size fit · excellent condition</div>
-           <button class="swap-btn">i want this →</button>
+        <div class="swap-body">
+          <div class="swap-type">Dress · Giving Away</div>
+          <div class="swap-desc">floor-length cabernet satin gown with silver heels. wore it once and felt like I was on the red carpet. ready for a new main character.</div>
+          <div class="swap-size">Plus-size fit · excellent condition</div>
+          <button class="swap-btn">i want this →</button>
         </div>
       </div>
 
       <!-- 2: Armani-ish black suit -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="sbarmani.png"
-            alt="Black designer suit with white shirt and black tie on a mannequin, full jacket and pants visible against a dark studio background."
-            class="swap-photo"
-          />
+          <img src="sbarmani.png" alt="Black designer suit with white shirt and black tie on a mannequin, full jacket and pants visible against a dark studio background." class="swap-photo"/>
           <div class="swap-img-label">💎 black suit set</div>
         </div>
         <div class="swap-body">
-    <div class="swap-type">Suit · Giving Away</div>
-    <div class="swap-desc">
-      black designer suit with a white shirt and black tie. full jacket + pants. wore it once, now it’s just hanging there looking expensive.
-    </div>
-    <div class="swap-size">Size 38R · dry cleaned & ready</div>
+          <div class="swap-type">Suit · Giving Away</div>
+          <div class="swap-desc">black designer suit with a white shirt and black tie. full jacket + pants. wore it once, now it's just hanging there looking expensive.</div>
+          <div class="swap-size">Size 38R · dry cleaned & ready</div>
           <button class="swap-btn">i want this →</button>
         </div>
       </div>
@@ -900,19 +828,13 @@
       <!-- 3: Champagne gown -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="sbchampagne.png"
-            alt="Champagne-gold sequined mermaid gown on a mannequin with sparkly drop earrings on a stand beside it, clean red carpet studio vibe."
-            class="swap-photo"
-          />
+          <img src="sbchampagne.png" alt="Champagne-gold sequined mermaid gown on a mannequin with sparkly drop earrings on a stand beside it, clean red carpet studio vibe." class="swap-photo"/>
           <div class="swap-img-label">💎 champagne mermaid</div>
         </div>
-       <div class="swap-body">
-    <div class="swap-type">Dress · Giving Away</div>
-    <div class="swap-desc">
-      champagne-gold sequined mermaid gown with matching sparkly earrings. this is full Old Hollywood slink. i’m switching colors this year.
-    </div>
-    <div class="swap-size">Size S · tiny side zip</div>
+        <div class="swap-body">
+          <div class="swap-type">Dress · Giving Away</div>
+          <div class="swap-desc">champagne-gold sequined mermaid gown with matching sparkly earrings. this is full Old Hollywood slink. i'm switching colors this year.</div>
+          <div class="swap-size">Size S · tiny side zip</div>
           <button class="swap-btn">i want this →</button>
         </div>
       </div>
@@ -920,19 +842,13 @@
       <!-- 4: Emerald plus-size suit -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="sbemerald.png"
-            alt="Deep emerald green plus-size suit with subtle gold detailing on a mannequin, tailored for a broader body, lit by a soft spotlight."
-            class="swap-photo"
-          />
+          <img src="sbemerald.png" alt="Deep emerald green plus-size suit with subtle gold detailing on a mannequin, tailored for a broader body, lit by a soft spotlight." class="swap-photo"/>
           <div class="swap-img-label">💎 emerald suit set</div>
         </div>
-         <div class="swap-body">
-    <div class="swap-type">Suit · Giving Away</div>
-    <div class="swap-desc">
-      deep emerald green suit with subtle gold detailing, cut for a bigger body. if you’re broad‑shouldered and stocky, this will eat.
-    </div>
-    <div class="swap-size">Plus-size fit · includes belt</div>
+        <div class="swap-body">
+          <div class="swap-type">Suit · Giving Away</div>
+          <div class="swap-desc">deep emerald green suit with subtle gold detailing, cut for a bigger body. if you're broad‑shouldered and stocky, this will eat.</div>
+          <div class="swap-size">Plus-size fit · includes belt</div>
           <button class="swap-btn">i want this →</button>
         </div>
       </div>
@@ -940,18 +856,12 @@
       <!-- 5: Femme accessories -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="sbfemme.png"
-            alt="Flat lay on white marble of gold hoops, a crystal clutch, nude strappy heels, and a thin gold bracelet arranged for a dressy prom look."
-            class="swap-photo"
-          />
+          <img src="sbfemme.png" alt="Flat lay on white marble of gold hoops, a crystal clutch, nude strappy heels, and a thin gold bracelet arranged for a dressy prom look." class="swap-photo"/>
           <div class="swap-img-label">💎 glow-up accessories</div>
         </div>
         <div class="swap-body">
           <div class="swap-type">Accessories · Giving Away</div>
-          <div class="swap-desc">
-            hoops, clutch, heels, bracelet — full accessory set. perfect if your dress is simple but you want the details to go crazy.
-          </div>
+          <div class="swap-desc">hoops, clutch, heels, bracelet — full accessory set. perfect if your dress is simple but you want the details to go crazy.</div>
           <div class="swap-size">jewelry + bag + shoes</div>
           <button class="swap-btn">i want this →</button>
         </div>
@@ -960,79 +870,54 @@
       <!-- 6: Masc accessories -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="sbmasc.png"
-            alt="Flat lay on a mirror of black leather dress shoes, cufflinks, a sleek men’s watch, and a single stud earring with reflections showing."
-            class="swap-photo"
-          />
+          <img src="sbmasc.png" alt="Flat lay on a mirror of black leather dress shoes, cufflinks, a sleek men's watch, and a single stud earring with reflections showing." class="swap-photo"/>
           <div class="swap-img-label">💎 sharp accessories</div>
         </div>
         <div class="swap-body">
           <div class="swap-type">Accessories · Giving Away</div>
-          <div class="swap-desc">
-            dress shoes, cufflinks, watch, and a stud — everything you need to make a basic suit look on‑purpose.
-          </div>
+          <div class="swap-desc">dress shoes, cufflinks, watch, and a stud — everything you need to make a basic suit look on‑purpose.</div>
           <div class="swap-size">shoes + jewelry set</div>
           <button class="swap-btn">i want this →</button>
         </div>
       </div>
 
-      <!-- Original emoji demo cards (kept for extra examples) -->
+      <!-- 7: Blush tulle -->
       <div class="swap-card">
-          <div class="swap-img">
-          <img
-            src="blush.png"
-            alt="High‑resolution studio product photo of a calf-length nude pink tulle asymmetrical shoulder gown on a size 8 black dress mannequin."
-            class="swap-photo"
-          />
-          <div style="font-size: 2.5rem;">✨</div>
+        <div class="swap-img">
+          <img src="blush.png" alt="High‑resolution studio product photo of a calf-length nude pink tulle asymmetrical shoulder gown on a size 8 black dress mannequin." class="swap-photo"/>
           <div class="swap-img-label">nude pink calf-length</div>
         </div>
         <div class="swap-body">
           <div class="swap-type">Dress · Giving Away</div>
-          <div class="swap-desc">
-            BCBG tulle dress, worn once for junior prom last year. zero drama this dress era
-          </div>
+          <div class="swap-desc">BCBG tulle dress, worn once for junior prom last year. zero drama this dress era</div>
           <div class="swap-size">Size 8 · excellent condition</div>
           <button class="swap-btn">i want this →</button>
         </div>
       </div>
 
+      <!-- 8: Cream suit -->
       <div class="swap-card">
         <div class="swap-img">
-          <img
-            src="cream.png"
-            alt="High-resolution studio product photo of a cream/off-white slim-fit two-piece men’s suit on a mannequin."
-            class="swap-photo"
-          />
-          <div style="font-size: 2.5rem;"></div>
+          <img src="cream.png" alt="High-resolution studio product photo of a cream/off-white slim-fit two-piece men's suit on a mannequin." class="swap-photo"/>
           <div class="swap-img-label">cream suit set</div>
         </div>
         <div class="swap-body">
           <div class="swap-type">Suit · Giving Away</div>
-          <div class="swap-desc">
-            H&M slim fit 2-piece, cream/off-white. honestly too good to sit in a closet
-          </div>
+          <div class="swap-desc">H&M slim fit 2-piece, cream/off-white. honestly too good to sit in a closet</div>
           <div class="swap-size">Size 38R · dry cleaned & ready</div>
           <button class="swap-btn">i want this →</button>
         </div>
       </div>
 
+      <!-- 9: Black sequin mini -->
       <div class="swap-card">
-         <div class="swap-img">
-          <img
-            src="sequin.png"
-            alt="High-resolution studio product photo of a black sequin mini dress on a dress mannequin."
-            class="swap-photo"
-          />
-          <div style="font-size: 2.5rem;">✨</div>
+        <div class="swap-img">
+          <img src="sequin.png" alt="High-resolution studio product photo of a black sequin mini dress on a dress mannequin." class="swap-photo"/>
           <div class="swap-img-label">black sequin mini</div>
         </div>
         <div class="swap-body">
           <div class="swap-type">Dress · Giving Away</div>
-          <div class="swap-desc">
-            Zara sequin mini, so fun but I'm going long this year. it SLAPS though
-          </div>
+          <div class="swap-desc">Zara sequin mini, so fun but I'm going long this year. it SLAPS though</div>
           <div class="swap-size">Size S · tiny side zip</div>
           <button class="swap-btn">i want this →</button>
         </div>
@@ -1040,25 +925,20 @@
 
       <!-- Post your item card -->
       <div class="swap-card" style="border-style: dashed; border-color: var(--blush);">
-        <div class="swap-img" style="background: var(--cream); flex-direction: column; gap: 0.5rem;">
+        <div class="swap-img" style="background: var(--cream); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem;">
           <div style="font-size: 2rem; opacity: 0.4;">+</div>
-          <div style="font-size: 0.75rem; color: var(--taupe); letter-spacing: 0.1em; text-transform: uppercase;">
-            post your item
-          </div>
+          <div style="font-size: 0.75rem; color: var(--taupe); letter-spacing: 0.1em; text-transform: uppercase;">post your item</div>
         </div>
         <div class="swap-body">
           <div class="swap-type">List Something</div>
-          <div class="swap-desc">
-            got something someone else would love? post it here and pass the glow forward.
-          </div>
+          <div class="swap-desc">got something someone else would love? post it here and pass the glow forward.</div>
           <div class="swap-size">&nbsp;</div>
           <button class="swap-btn" onclick="showPostForm()">list my item →</button>
         </div>
       </div>
     </div>
-  </section>
-</div>
 
+    <!-- Post form — INSIDE the section, INSIDE page-swap -->
     <div id="post-form-area" style="display:none; margin-top: 3rem;">
       <div class="gold-divider" style="margin-bottom: 2rem;"></div>
       <div class="section-label">New Listing</div>
@@ -1092,10 +972,11 @@
         </div>
       </div>
     </div>
-  </section>
-</div>
 
-<!-- NO TWINS PAGE -->
+  </section>
+</div><!-- end page-swap -->
+
+<!-- ========== NO TWINS PAGE ========== -->
 <div id="page-notwins" class="page">
   <section>
     <div class="section-label">Outfit Registry</div>
@@ -1148,6 +1029,7 @@
       </div>
     </div>
 
+    <!-- Claim form — INSIDE the section, INSIDE page-notwins -->
     <div id="claim-form-area" style="display:none; margin-top: 3rem;">
       <div class="gold-divider" style="margin-bottom: 2rem;"></div>
       <div class="section-label">Claim Your Look</div>
@@ -1177,7 +1059,7 @@
     </div>
 
   </section>
-</div>
+</div><!-- end page-notwins -->
 
 <div class="gold-divider"></div>
 <footer>
@@ -1186,83 +1068,69 @@
 </footer>
 
 <script>
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function showPostForm() {
-  const el = document.getElementById('post-form-area');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-function showClaimForm() {
-  const el = document.getElementById('claim-form-area');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
   function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function showPostForm() {
-  const el = document.getElementById('post-form-area');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-function showClaimForm() {
-  const el = document.getElementById('claim-form-area');
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-  if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-/* NEW: thrift map filters + pins */
-(function () {
-  const filterButtons = document.querySelectorAll('.map-filter-btn');
-  const cards = document.querySelectorAll('.thrift-card');
-  const pins = document.querySelectorAll('.map-pin');
-
-  function applyFilter(filter) {
-    cards.forEach(card => {
-      const hood = card.dataset.neighborhood;
-      const tags = (card.dataset.tags || '').split(',');
-      let show = false;
-
-      if (filter === 'all') {
-        show = true;
-      } else if (filter === 'haight' || filter === 'mission') {
-        show = hood === filter;
-      } else if (filter === 'formal') {
-        show = tags.includes('formal');
-      }
-
-      card.style.display = show ? '' : 'none';
-    });
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      filterButtons.forEach(b => b.classList.toggle('is-active', b === btn));
-      applyFilter(filter);
-    });
-  });
+  function showPostForm() {
+    const el = document.getElementById('post-form-area');
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 
-  pins.forEach(pin => {
-    pin.addEventListener('click', () => {
-      const hood = pin.dataset.neighborhood;
-      filterButtons.forEach(b => {
-        const isMatch = b.dataset.filter === hood;
-        b.classList.toggle('is-active', isMatch);
+  function showClaimForm() {
+    const el = document.getElementById('claim-form-area');
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+    if (el.style.display === 'block') el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* Thrift map filters + pins */
+  (function () {
+    const filterButtons = document.querySelectorAll('.map-filter-btn');
+    const cards = document.querySelectorAll('.thrift-card');
+    const pins = document.querySelectorAll('.map-pin');
+
+    function applyFilter(filter) {
+      cards.forEach(card => {
+        const hood = card.dataset.neighborhood;
+        const tags = (card.dataset.tags || '').split(',');
+        let show = false;
+
+        if (filter === 'all') {
+          show = true;
+        } else if (filter === 'haight' || filter === 'mission') {
+          show = hood === filter;
+        } else if (filter === 'formal') {
+          show = tags.includes('formal');
+        }
+
+        card.style.display = show ? '' : 'none';
       });
-      applyFilter(hood);
-    });
-  });
+    }
 
-  // initialize
-  applyFilter('all');
-})();
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        filterButtons.forEach(b => b.classList.toggle('is-active', b === btn));
+        applyFilter(filter);
+      });
+    });
+
+    pins.forEach(pin => {
+      pin.addEventListener('click', () => {
+        const hood = pin.dataset.neighborhood;
+        filterButtons.forEach(b => {
+          const isMatch = b.dataset.filter === hood;
+          b.classList.toggle('is-active', isMatch);
+        });
+        applyFilter(hood);
+      });
+    });
+
+    applyFilter('all');
+  })();
 </script>
 </body>
 </html>
